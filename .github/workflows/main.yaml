@@ -21,11 +21,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - uses: spack/spack-github-action@master
+        
+      # Checks-out spack repository
+      - uses: actions/checkout@v2
+        with:
+          repository: 'spack/spack'
+
       - run: |
-          export PATH=/github/workspace/spack/bin:$PATH
-          /github/workspace/spack/bin/spack --version
+          export PATH=${GITHUB_WORKSPACE}/spack/bin:$PATH
+          ${GITHUB_WORKSPACE}/spack/bin/spack --version
           spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
           spack install gfarm gfarm2fs
           spack load -r gfarm gfarm2fs
