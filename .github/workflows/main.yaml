@@ -29,9 +29,6 @@ jobs:
           path: spack
 
       - run: |
-          ls -la
-          ls -la ..
-          tree
           export PATH=${GITHUB_WORKSPACE}/spack/bin:$PATH
           ${GITHUB_WORKSPACE}/spack/bin/spack --version
           spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
