@@ -24,8 +24,8 @@ jobs:
       
       - uses: spack/spack-github-action@master
       - run: |
-          export PATH=/spack/bin:$PATH
-          /spack/bin/spack --version
+          export PATH=/github/workspace/spack/bin:$PATH
+          /github/workspace/spack/bin/spack --version
           spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
           spack install gfarm gfarm2fs
           spack load -r gfarm gfarm2fs
