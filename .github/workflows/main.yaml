@@ -25,9 +25,9 @@ jobs:
       - uses: spack/spack-github-action@master
       - run: |
           export PATH=${GITHUB_WORKSPACE}/spack/bin:$PATH
-          spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
-          spack install gfarm gfarm2fs
-          spack load -r gfarm gfarm2fs
+          ${GITHUB_WORKSPACE}/spack/bin/spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
+          ${GITHUB_WORKSPACE}/spack/bin/spack install gfarm gfarm2fs
+          ${GITHUB_WORKSPACE}/spack/bin/spack load -r gfarm gfarm2fs
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
