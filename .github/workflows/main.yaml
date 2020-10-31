@@ -25,9 +25,13 @@ jobs:
       # Checks-out spack repository
       - uses: actions/checkout@v2
         with:
-          repository: 'spack/spack'
+          repository: spack/spack
+          path: spack
 
       - run: |
+          ls -la
+          ls -la ..
+          tree
           export PATH=${GITHUB_WORKSPACE}/spack/bin:$PATH
           ${GITHUB_WORKSPACE}/spack/bin/spack --version
           spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
