@@ -6,9 +6,9 @@ name: CI
 # events but only for the main branch
 on:
   push:
-    branches: [ main, add-github-action ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, add-github-action ]
+    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,10 +24,11 @@ jobs:
       
       - uses: spack/spack-github-action@master
       - run: |
-          export PATH=${GITHUB_WORKSPACE}/spack/bin:$PATH
-          ${GITHUB_WORKSPACE}/spack/bin/spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
-          ${GITHUB_WORKSPACE}/spack/bin/spack install gfarm gfarm2fs
-          ${GITHUB_WORKSPACE}/spack/bin/spack load -r gfarm gfarm2fs
+          export PATH=/spack/bin:$PATH
+          /spack/bin/spack --version
+          spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
+          spack install gfarm gfarm2fs
+          spack load -r gfarm gfarm2fs
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
