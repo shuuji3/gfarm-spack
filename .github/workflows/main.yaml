@@ -31,7 +31,7 @@ jobs:
       - run: |
           export PATH=${GITHUB_WORKSPACE}/spack/bin:$PATH
           ${GITHUB_WORKSPACE}/spack/bin/spack --version
-          spack repo add ${GITHUB_WORKSPACE}/gfarm-spark
+          spack repo add ${GITHUB_WORKSPACE}
           spack install gfarm gfarm2fs
           spack load -r gfarm gfarm2fs
 
