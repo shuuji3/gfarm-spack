@@ -19,28 +19,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checks-out the repository under $GITHUB_WORKSPACE
+        uses: actions/checkout@v2
         
-      # Checks-out spack repository
-      - uses: actions/checkout@v2
+      - name: Checks-out spack repository
+        uses: actions/checkout@v2
         with:
           repository: spack/spack
           path: spack
 
-      - run: |
+      - name: Install libfuse-dev dependency
+        run: sudo apt install libfuse-dev
+
+      - name: Install gfarm and gfarm2fs packages using spack
+        run: |
           export PATH=${GITHUB_WORKSPACE}/spack/bin:$PATH
-          ${GITHUB_WORKSPACE}/spack/bin/spack --version
           spack repo add ${GITHUB_WORKSPACE}
           spack install gfarm gfarm2fs
           spack load -r gfarm gfarm2fs
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
